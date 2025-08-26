@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team</title>
+
+    <!-- External Font and Icons -->
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="stylesheets/style.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0b0c10 ;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            z-index: 1;
+        }
+        section{
+            margin-top: 0px;
+            background-color:  #0b0c10;
+        }
+
+        section {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            /* max-width: 1200px; */            
+            z-index: 1;
+        }
+
+        section::before,
+        section::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        section::before {
+            background: linear-gradient(#f00, #f0f);
+            clip-path: circle(30% at right 70%);
+            
+        }
+
+        section::after {
+            background: linear-gradient(#2196f3, #e91e63);
+            clip-path: circle(20% at 10% 10%);
+        }
+
+        h2 {
+            color: white;
+            text-align: center;
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0px;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .card {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        .card:hover {
+            box-shadow: 0px 0px 8px white, 0px 0px 18px aqua;
+        }
+
+        .card .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .card .imgBx {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 7px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.5s;
+        }
+
+        .card .imgBx:hover {
+            box-shadow: 0px 0px 8px white, 0px 0px 18px aqua;
+            transform: scale(1.5);
+            transition: transform 0.5s
+        }
+
+        .card .imgBx:hover~.contentBox {
+            transform: translateY(25px);
+            transition: transform 0.5s;
+            
+        }
+
+        .card .imgBx img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card .contentBox h3 {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            font-size: 18px;
+            text-align: center;
+            margin: 20px 0 10px;
+        }
+
+        .card .contentBox h3 span {
+            font-size: 12px;
+            font-weight: 300;
+            text-transform: capitalize;
+        }
+
+        .card .sci {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+        }
+
+        .card .sci li {
+            list-style: none;
+            margin: 0 10px;
+            transform: translateY(40px);
+            opacity: 0;
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        .card:hover .sci li {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card .sci li a {
+            color: #fff;
+            font-size: 24px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+                max-width: 300px;
+                margin: 10px 0;
+            }
+
+            .card .contentBox h3 {
+                font-size: 16px;
+            }
+
+            .card .imgBx {
+                width: 120px;
+                height: 120px;
+            }
+
+            .card .sci li a {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header class="header">
+<a href="index.html" class="logo">CESA</a>
+<!-- <button onclick="Toggle()" id="menu-btn">O</button> -->
+<i class='bx bx-menu' onclick="Toggle()" id="menu-icon"></i>
+<nav class="navbar" id="nav">
+    <a href="index.html">Home</a>
+    <div class="dropdown">
+        <a href="index.html#events" class="nav-btn">Event</a>
+        <div class="dropdown-content">
+            <a href="culevent.html">&nbsp<i class='bx bxs-music'></i>&nbspCultural</a>
+            <a href="techevent.html">&nbsp<i class='bx bx-code-alt'></i>&nbspTechnical</a>
+            <a href="sportevent.html">&nbsp<i class='bx bx-trophy'></i>&nbspSports</a>
+        </div>
+    </div>
+    <a href="team.html">Team</a>
+    <a href="executives.html">Executives</a>
+    <div class="dropdown-content">
+            <a href="culevent.html">&nbsp<i class='bx bxs-music'></i>&nbspCultural</a>
+            <a href="techevent.html">&nbsp<i class='bx bx-code-alt'></i>&nbspTechnical</a>
+            <a href="sportevent.html">&nbsp<i class='bx bx-trophy'></i>&nbspSports</a>
+        </div>
+    <a href="#footer">Contact</a>
+</nav>
+</header>
+    <main >
+
+        <section id="tech">
+            <h2>Technical Team</h2>
+            <div class="container">
+                <!-- Card Section -->
+
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Harshit_Rathour.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Harshit Rathour</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Shreyas_Nalle.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Shreyas Nalle</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Keya_Nagar.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Keya Nagar</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Mughda_Baviskar.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Mugdha Baviskar</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Ved_Khokale.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Ved Khokale</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                
+            </div>
+        </section>
+
+       <section id="cultural">
+            <h2>Cultural Team</h2>
+            <div class="container">
+                <!-- Card Section -->
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Anushka_Satkar.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Anushka Satkar</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Devyani_Satpute.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Devyani Satpute</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Yukta_Patil.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Yukta Patil</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Shivani_Bhujbal.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Shivani Bhujbal</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Samarth AGADNYAN</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Omkar_Sonawane.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Omkar Sonawan</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </section>  
+        
+        <section id="Sport">
+            <h2>Sport Team</h2>
+            <div class="container">
+                <!-- Card Section -->
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Akash_Sonawane.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Akash Sonawane</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Vedant_Murade.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Vedant Murade</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Om_Shinde.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>OM Shinde</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Tanvi_Deokar.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Tanvi Deokar</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Omkar_Sale.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Omkar Sale</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="Media">
+            <h2>Media Team</h2>
+            <div class="container">
+                <!-- Card Section -->
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Rohit_Nimase.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Rohit Nimase</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Mayur_Saitwal.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Mayur Saitwal</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Piyush Ankaikar</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Sarthak Mandlik</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="doc">
+            <h2>Documentation team</h2>
+            <div class="container">
+                <!-- Card Section -->
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Soham_Borawke.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Soham Borawke</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Parth_Chaudhari.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Parth Chaudhari</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Shivani_Pathak.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Shivani Pathak</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="Discipline">
+            <h2>Discipline Team</h2>
+            <div class="container">
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Dinesh_Seervi.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Dinesh Seervi</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Aditya_Hole.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Aaditya Hole</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="content">
+                        <div class="imgBx">
+                            <img src="images/profiles/Shivam_Dongare.png" alt="profile image">  
+                        </div>
+                        <div class="contentBox">
+                            <h3>Shivam Dongare</h3>
+                        </div>
+                        <ul class="sci">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="footer">
+
+    <div class="followus" data-aos="fade-right" data-aos-offset="100">
+      <h2 class="footer-heading">Follow Us</h2>
+      <div>
+        <div class="social-media-footer">
+          <a href="https://instagram.com/ioitcesa" target="_blank"><i class='bx bxl-instagram'></i></a>
+          <a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a>
+          <a href="#" target="_blank"><i class='bx bxl-discord-alt'></i></a>
+          <a href="https://youtube.com/@ioitcesa2954?si=slFAfkUp5796LXX3" target="_blank"><i class='bx bxl-youtube'></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="contactus" data-aos="fade-left" data-aos-offset="100">
+      <h2 class="footer-heading">Contact Us</h2>
+      <div class="contactus-content">
+        <p><span>Address</span> : Kennedy Road, Near RTO, Pune - 411 001, Maharashtra, India</p>
+      </div>
+    </div>
+  </footer>
+
+
+    <script src="profile.js"></script>
+
+</body>
+
+</html>
